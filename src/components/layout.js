@@ -1,75 +1,86 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 
 import { rhythm, scale } from "../utils/typography"
+import styled from "@emotion/styled"
 
-class Layout extends React.Component {
-  render() {
-    const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
+const Heading = styled.h3({
+  fontFamily: `Montserrat, sans-serif`,
+  marginTop: 0,
+})
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
+const FooterText = styled.footer({
+  color: "#999",
+})
+
+const Menu = styled.ul({
+  listStyleType: "none",
+})
+
+const MenuItem = styled.li({
+  ...scale(1 / 4),
+  display: "inline-block",
+  "&:after": {
+    margin: rhythm(1 / 4),
+    content: "\"\\2014\"",
+  },
+  "&:last-child:after": {
+    content: "\"\"",
+  },
+})
+
+function MenuEntry({ to, current, children }) {
+  return (
+    <MenuItem><Link style={current === to ? { boxShadow: "none" } : null} to={to}>{children}</Link></MenuItem>
+  )
+}
+
+function Layout({ children, location }) {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          author
+        }
+      }
     }
-    return (
-      <div
-        style={{
-          marginLeft: `auto`,
-          marginRight: `auto`,
-          maxWidth: rhythm(24),
-          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-        }}
-      >
-        <header>{header}</header>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    )
-  }
+  `)
+  const title = data.site.siteMetadata.title
+  const current = location && location.pathname
+  return (
+    <div
+      style={{
+        marginLeft: `auto`,
+        marginRight: `auto`,
+        maxWidth: rhythm(24),
+        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+      }}
+    >
+      <header>
+        <Heading>
+          <Link style={{
+            boxShadow: `none`,
+            textDecoration: `none`,
+            color: `inherit`,
+          }} to={`/`}>
+            {title}
+          </Link>
+        </Heading>
+        <Menu>
+          <MenuEntry current={current} to="/experiences/">About</MenuEntry>
+          <MenuEntry current={current} to="/projects/">Projects</MenuEntry>
+          <MenuEntry current={current} to="/blog/">Stuff</MenuEntry>
+        </Menu>
+      </header>
+      <main>{children}</main>
+      <FooterText>
+        <small>
+          Contact: trendel.alexandre[at]gmail.com
+        </small>
+      </FooterText>
+    </div>
+  )
 }
 
 export default Layout

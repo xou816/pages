@@ -1,0 +1,36 @@
+title: Full-stack web developer
+company: OUI.sncf
+link: https://oui.sncf
+dates: dec 2016 - present
+details: !markdown |
+  **Work-study contract.**
+
+  Tasks: full-stack web development as part of an agile team, in a complex technical environment.
+tags:
+  - java
+  - react
+  - javascript
+isCurrent: true
+
+---
+
+title: Project manager
+company: Adfab
+link: https://adfab.fr
+dates: may 2018 - aug 2018
+details: !markdown |
+  **Four-month internship in Montréal, Canada.**
+
+  Tasks : interaction with clients, team management, functional specifications, testing.
+isCurrent: false
+
+---
+
+title: Engineering student
+company: ECN
+dates: sept 2016 - expected to graduate in sept 2019
+link: https://ec-nantes.fr
+details: !markdown |
+  A highly selective French school of engineering conferring a diploma equivalent to a Master’s Degree.
+
+  Specialization in Applied Mathematics and Data Science.
