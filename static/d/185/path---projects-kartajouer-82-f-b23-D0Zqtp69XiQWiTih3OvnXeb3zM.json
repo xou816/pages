@@ -1,0 +1,1 @@
+{"errors":[{"message":"Variable \"$slug\" of required type \"String!\" was not provided.","locations":[{"line":3,"column":3}]}],"pageContext":{"isCreatedByStatefulCreatePages":false,"name":"Kartajouer","repoName":"kartajouer","repoOwner":"xou816"}}
