@@ -30,7 +30,8 @@ function Projects({ data, location }) {
 
 export default Projects
 
-/*
+export const projectsQuery = graphql`
+  query {
     github {
       viewer {
         repositories(first: 20, orderBy: {field: STARGAZERS, direction: DESC}, privacy: PUBLIC) {
@@ -55,10 +56,6 @@ export default Projects
         }
       }
     }
- */
-
-export const projectsQuery = graphql`
-  query {
     projects: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC },
       filter: { frontmatter: { hidden: { ne: true }, kind: { eq: "projects"} } }
