@@ -36,28 +36,14 @@ function ProjectDetails({ data, location, pageContext }) {
     <Layout location={location}>
       <SEO title={details.frontmatter.name}/>
       <Project {...details.frontmatter} description={details.html} fullDesc/>
-      {github.repository && <GithubActivity github={github}/>}
+      {github && github.repository && <GithubActivity github={github}/>}
     </Layout>
   )
 }
 
 export default ProjectDetails
 
-export const pageQuery = graphql`
-  query ProjectDetails($slug: String!, $repoOwner: String!, $repoName: String!) {
-    details: markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
-      frontmatter {
-        title
-        tags
-        description
-        url
-        repository {
-          owner
-          name
-        }
-      }
-    }
+/*
     github {
       repository(owner: $repoOwner, name: $repoName) {
         ref(qualifiedName: "master") {
@@ -72,6 +58,23 @@ export const pageQuery = graphql`
               }
             }
           }
+        }
+      }
+    }
+ */
+
+export const pageQuery = graphql`
+  query ProjectDetails($slug: String!) {
+    details: markdownRemark(fields: {slug: {eq: $slug}}) {
+      html
+      frontmatter {
+        title
+        tags
+        description
+        url
+        repository {
+          owner
+          name
         }
       }
     }

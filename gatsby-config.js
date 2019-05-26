@@ -65,7 +65,7 @@ module.exports = {
         ],
       },
     },
-    {
+    /*{
       resolve: "gatsby-source-graphql",
       options: {
         typeName: "GitHub",
@@ -81,6 +81,7 @@ module.exports = {
         fetchOptions: {},
       },
     },
+    */
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-feed`,
