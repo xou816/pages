@@ -1,1 +1,0 @@
-{"errors":[{"message":"Variable \"$repoOwner\" is never used in operation \"ProjectDetails\".","locations":[{"line":3,"column":3}]},{"message":"Variable \"$repoName\" is never used in operation \"ProjectDetails\".","locations":[{"line":4,"column":3}]}],"pageContext":{"isCreatedByStatefulCreatePages":false,"slug":"/projects/edt-ecn/","repoOwner":"xou816","repoName":"edt-ecn"}}
